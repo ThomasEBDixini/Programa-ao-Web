@@ -13,7 +13,7 @@ class SeriesController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -23,7 +23,10 @@ class SeriesController extends Controller
      */
     public function create()
     {
-        //
+        $serie = new Serie();
+        $serie->all();
+
+        return response(Serie::all(),200);
     }
 
     /**
