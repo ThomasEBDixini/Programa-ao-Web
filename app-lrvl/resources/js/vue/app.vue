@@ -5,6 +5,10 @@
         <div class="heading">
             <h2 id="title">Séries</h2>
         </div>
+        <list-view 
+            :series="series"
+            
+        />
     </div>
 </div>
 
@@ -12,9 +16,11 @@
 
 <script>
 
+import listView from './listView';
+
 export default {
     components: {
-
+        listView
     },
     data: function(){
         return {
@@ -44,7 +50,7 @@ export default {
 </script>
 
 <style scoped>
-    .seriesContainer {
+    .series-container {
         width: 50%;
         margin: auto;
     }
