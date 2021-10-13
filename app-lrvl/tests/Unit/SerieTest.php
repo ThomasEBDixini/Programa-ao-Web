@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class SerieTest extends TestCase
