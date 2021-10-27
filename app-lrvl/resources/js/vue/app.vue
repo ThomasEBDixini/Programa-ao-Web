@@ -1,62 +1,50 @@
-<template> 
-
-<div>
-    <div class="seriesContainer">
+<template>
+    <div class="series-container">
         <div class="heading">
-            <h2 id="title">Séries</h2>
+            <h1 id="title">Séries</h1>
+            <!-- @todo botão do formulário -->
         </div>
-        <list-view 
-            :series="series"
-            
-        />
+        <table-series :series="series"/>
     </div>
-</div>
-
 </template>
 
-<script>
-
-import listView from './listView';
-
+<script>tableSeries
+import tableSeries from './tableSeries.vue'
 export default {
     components: {
-        listView
+        tableSeries
     },
-    data: function(){
+    data: function() {
         return {
             series: [],
         }
     },
     methods: {
-        getSeries(){
+        getSeries() {
             axios.get('api/v1/series')
-            .then( response => {
-               this.series = response.data
-               console.log(this.series)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-        }
+                .then( response => {
+                    this.series = response.data
+                    console.log(this.series);
+                }) 
+                .catch( error => {
+                    console.log(error);
+                })
+        },
     },
-    created(){
+    created() {
         this.getSeries();
-        
     }
-
-    
-
 }
 </script>
 
 <style scoped>
     .series-container {
-        width: 50%;
-        margin: auto;
+        margin: 10px auto;
+        width: 60%;
     }
     .heading {
         background: #e6e6e6;
-        padding: 10px;
+        padding: 20px;
     }
     #title {
         text-align: center;
