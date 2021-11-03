@@ -23,6 +23,7 @@
 export default {
     props: ['series'],
 }
+
 </script>
 
 <style scoped></style>
