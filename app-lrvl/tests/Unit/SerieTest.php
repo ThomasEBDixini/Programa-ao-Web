@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Models\Serie;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class SerieTest extends TestCase
@@ -18,7 +19,7 @@ class SerieTest extends TestCase
     public function test_series_list_request_works()
     {
         $response = $this->json('GET', '/api/v1/series');
-        $response->assertStatus(200);
+        $response->assertStatus(Response::HTTP_OK);
     }
 
     public function test_series_list_is_colletion()
@@ -58,7 +59,7 @@ class SerieTest extends TestCase
     public function test_action_show_response_status_fail()
     {
         $response = $this->json('GET', '/api/v1/serie/1');
-        $response->assertStatus(404);
+        $response->assertStatus(Response::HTTP_NOT_FOUND);
     }
 
     public function test_action_show_response_status_success()
@@ -72,11 +73,12 @@ class SerieTest extends TestCase
         $this->assertEquals(1, $responseData['id']);
         
         $response = $this->json('GET', '/api/v1/serie/1');
-        $response->assertStatus(200);
+        $response->assertStatus(Response::HTTP_OK);
     }
 
 
 
+    
     public function test_action_show_response_update_fail()
     {
         $response = $this->json('GET', '/api/v1/serie/1');
@@ -124,5 +126,6 @@ class SerieTest extends TestCase
         $response->assertStatus(200);
     }
 }
+
 
 
