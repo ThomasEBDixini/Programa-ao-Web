@@ -1,12 +1,12 @@
 <template>
     <div class="row">
         <div class="col-auto">
-            <label for="titulo" class="form-label">Título: </label>
+            <label for="nome" class="form-label">Título: </label>
         </div>
         <div class="col-auto">
             <input 
-                v-model="serie.titulo" 
-                id="titulo"
+                v-model="serie.nome" 
+                id="nome"
                 placeholder="Digite o título da série"
                 class="form-control"
                 required
@@ -44,27 +44,19 @@
 
 <script>
 export default {
-    data: function () {
-        return {
-            serie: {
-                titulo: "",
-                categoria: "",
-                streaming: "",
-            }
-        }
-    },
+    props: ['serie'],
     methods: {
         cadastrarSerie() {
             if (this.existeCampoVazio() === true) {
                 return;
             }
             axios.post('api/v1/serie', {
-                nome: this.serie.titulo,
+                nome: this.serie.nome,
                 categoria: this.serie.categoria,
                 streaming: this.serie.streaming
             }).then( response => {
                     if (response.status == '201') {
-                        this.serie.titulo = '';
+                        this.serie.nome = '';
                         this.serie.categoria = '';
                         this.serie.streaming = '';
                         this.$emit('reloadlist');
@@ -74,8 +66,39 @@ export default {
                     console.log(error);
                 })
         },
+
+
+
+        editarSerie() {
+            if (this.existeCampoVazio() === true) {
+                return;g
+            }
+            axios.patch('api/v1/serie', {
+                nome: this.serie.nome,
+                categoria: this.serie.categoria,
+                streaming: this.serie.streaming,
+                status: this.serie.status
+            }).then( response => {
+                    if (response.status == '201') {
+                        this.serie.nome = '';
+                        this.serie.categoria = '';
+                        this.serie.streaming = '';
+                        this.serie.status = '';
+                        this.$emit('editarserie');g
+                    }
+                }) 
+                .catch( error => {
+                    console.log(error);
+                })
+        },
+
+
+
+
+
+
         existeCampoVazio() {
-            if (this.serie.titulo == '' 
+            if (this.serie.nome == '' 
                 || this.serie.categoria == '' 
                 || this.serie.streaming == ''
             ) {
@@ -84,20 +107,7 @@ export default {
             return false;
         }
     },
-    
 }
-new Vue({
-  el: '...',
-  data: {
-    selected: ''
-  }
-})
-new Vue({
-  el: '...',
-  data: {
-    selected: ''
-  }
-})
 </script>
 
 <style scoped>
