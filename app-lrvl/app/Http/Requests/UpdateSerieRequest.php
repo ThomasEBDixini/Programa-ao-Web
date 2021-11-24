@@ -14,7 +14,9 @@ class UpdateSerieRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nome' => 'min:5|string',
+            'nome' => 'required|min:5|string',
+            'categoria' => 'required|string',
+            'streaming' => 'required|string',
             'status' => 'in:assistido,não-assistido'
         ];
     }

@@ -8,7 +8,7 @@
                     <th scope="col">Categoria</th>
                     <th scope="col">Streaming</th>
                     <th scope="col">Status</th>
-                    <th scope="col">Ações</th>
+                    <th scope="col">Ação</th>
                 </tr>
             </thead>
             <tbody>

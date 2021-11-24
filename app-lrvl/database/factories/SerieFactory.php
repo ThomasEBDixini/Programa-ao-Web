@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Series;
+use App\Models\Serie;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SeriesFactory extends Factory
+class SerieFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Series::class;
+    protected $model = Serie::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,7 @@ class SeriesFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'nome' => $this->faker->company,
         ];
     }
 }
