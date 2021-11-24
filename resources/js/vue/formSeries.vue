@@ -35,6 +35,28 @@
             </select>
         </div>
         <div class="col-auto">
+            <label for="temporada" class="form-label">Temporada: </label>
+        </div>
+        <div class="col-auto">
+            <select v-model="serie.temporada" id="temporada" class="form-control">
+                <option disabled value="">Qual a temporada: </option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+
+            </select>
+        </div>
+        
+        <div class="col-auto">
             <button class="btn btn-primary" @click="serie.id ? editarSerie() : cadastrarSerie() ">
                 {{ serie.id ? 'Editar': 'Cadastrar' }}
             </button>
@@ -53,13 +75,15 @@ export default {
             axios.post('api/v1/serie', {
                 nome: this.serie.nome,
                 categoria: this.serie.categoria,
-                streaming: this.serie.streaming
+                streaming: this.serie.streaming,
+                temporada: this.serie.temporada,
             }).then( response => {
                     if (response.status == '201') {
                         this.serie.id = null;
                         this.serie.nome = '';
                         this.serie.categoria = '';
                         this.serie.streaming = '';
+                        this.serie.temporada = '';
                         this.$emit('reloadlist');
                     }
                 }) 
@@ -76,12 +100,38 @@ export default {
                 categoria: this.serie.categoria,
                 streaming: this.serie.streaming,
                 status: this.serie.status,
+                temporada: this.serie.temporada,
             }).then( response => {
                     if (response.status == '204') {
                         this.serie.id = null;
                         this.serie.nome = '';
                         this.serie.categoria = '';
                         this.serie.streaming = '';
+                        this.serie.temporada = '';
+                        this.$emit('reloadlist');
+                    }
+                }) 
+                .catch( error => {
+                    console.log(error);
+                })
+        },
+        deletarSerie() {
+            if (this.existeCampoVazio() === true) {
+                return;
+            }
+            axios.delete('api/v1/serie/', {
+                nome: this.serie.nome,
+                categoria: this.serie.categoria,
+                streaming: this.serie.streaming,
+                status: this.serie.status,
+                temporada: this.serie.temporada,
+            }).then( response => {
+                    if (response.status == '204') {
+                        this.serie.id = null;
+                        this.serie.nome = '';
+                        this.serie.categoria = '';
+                        this.serie.streaming = '';
+                        this.serie.temporada = '';
                         this.$emit('reloadlist');
                     }
                 }) 
@@ -93,6 +143,7 @@ export default {
             if (this.serie.nome == '' 
                 || this.serie.categoria == '' 
                 || this.serie.streaming == ''
+                || this.serie.temporada == ''
             ) {
                 return true;
             }

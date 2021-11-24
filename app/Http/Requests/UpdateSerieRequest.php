@@ -17,7 +17,8 @@ class UpdateSerieRequest extends FormRequest
             'nome' => 'required|min:5|string',
             'categoria' => 'required|string',
             'streaming' => 'required|string',
-            'status' => 'in:assistido,não-assistido'
+            'status' => 'in:assistido,não-assistido',
+            'temporada' => 'required|int',
         ];
     }
 }

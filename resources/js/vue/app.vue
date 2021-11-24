@@ -16,7 +16,10 @@
                     <table-series 
                         :series="series" 
                         v-on:editarserie="editar($event)"
+                        v-on:deletarserie="deletar($event)"
+                        v-on:atualizarserie="atualizar($event)"
                     />
+                    
                 </div>
             </div>    
         </div>
@@ -57,6 +60,16 @@ export default {
                     console.log(error);
                 })
         },
+        deletar(id) {
+            axios.delete('api/v1/serie/' + id)
+                .then( response => {
+                    this.serie = response.data;
+                }) 
+                .catch( error => {
+                    console.log(error);
+                })
+        },
+        
     },
     created() {
         this.getSeries();

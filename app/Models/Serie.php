@@ -10,7 +10,7 @@ class Serie extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome', 'categoria', 'streaming', 'status'];
+    protected $fillable = ['nome', 'categoria', 'streaming', 'status','temporada'];
 
     public function temporadas()
     {

@@ -9,6 +9,7 @@
                     <th scope="col">Streaming</th>
                     <th scope="col">Status</th>
                     <th scope="col">Ações</th>
+                    <th scope="col">Temporadas</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,10 +19,11 @@
                     <td>{{ serie.categoria }}</td>
                     <td>{{ serie.streaming }}</td>
                     <td>{{ serie.status }}</td>
+                    <td>{{ serie.temporada }}</td>
                     <td>
                         <i class="bi bi-pencil-square" @click="editar(serie.id)"></i>
-                        <i class="bi bi-trash"></i>
-                        <i class="bi bi-check"></i>
+                        <i class="bi bi-trash" @click="deletar(serie.id)"></i>
+                        <i class="bi bi-check" @click="atualizar(serie.id)"></i>
                     </td>
                 </tr>
             </tbody>
@@ -35,7 +37,13 @@ export default {
     methods: {
         editar(id) {
             this.$emit('editarserie', id);
-        }
+        },
+        deletar(id){
+            this.$emit('deletarserie', id);
+        },
+        atualizar(id){
+            this.$emit('atualizarserie', id);
+        },
     }
 }
 </script>
