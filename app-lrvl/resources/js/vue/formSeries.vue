@@ -35,8 +35,13 @@
             </select>
         </div>
         <div class="col-auto">
+<<<<<<< HEAD
             <button class="btn btn-primary" @click="serie.id ? editarSerie() : cadastrarSerie() ">
                 {{ serie.id ? 'Editar': 'Cadastrar' }}
+=======
+            <button class="btn btn-primary" @click=" serie.id  ?  editarSerie() : cadastrarSerie()  ">
+               {{serie.id ? `Editar`: `Cadastrar`}} 
+>>>>>>> d656a7348b2dd98c5e6fea0dfbf038a852afc7a7
             </button>
         </div>
     </div>
@@ -45,6 +50,7 @@
 <script>
 export default {
     props: ['serie'],
+    
     methods: {
         cadastrarSerie() {
             if (this.existeCampoVazio() === true) {
@@ -67,6 +73,11 @@ export default {
                     console.log(error);
                 })
         },
+<<<<<<< HEAD
+=======
+        
+
+>>>>>>> d656a7348b2dd98c5e6fea0dfbf038a852afc7a7
         editarSerie() {
             if (this.existeCampoVazio() === true) {
                 return;
@@ -89,6 +100,10 @@ export default {
                     console.log(error);
                 })
         },
+<<<<<<< HEAD
+=======
+
+>>>>>>> d656a7348b2dd98c5e6fea0dfbf038a852afc7a7
         existeCampoVazio() {
             if (this.serie.nome == '' 
                 || this.serie.categoria == '' 
@@ -98,7 +113,14 @@ export default {
             }
             return false;
         }
+<<<<<<< HEAD
     }
+=======
+    },
+    created() {
+
+    },
+>>>>>>> d656a7348b2dd98c5e6fea0dfbf038a852afc7a7
 }
 </script>
 

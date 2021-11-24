@@ -58,7 +58,10 @@ export default {
         },
     },
     created() {
-        this.getSeries();
+        if (this.serie.id == null){
+            this.serie.categoria = '';
+            this.serie.streaming = '';
+        }
     }
 }
 </script>
